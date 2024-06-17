@@ -83,7 +83,7 @@ dependencies {
 
 
     // UI
-    implementation ("androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion")
+    implementation ("androidx.constraintlayout:constraintlayout:2.1.3")
     implementation ("com.google.android.material:material:$rootProject.materialVersion")
 
     /* coroutines support for firebase operations */
