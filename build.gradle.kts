@@ -46,15 +46,25 @@ plugins {
 }
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    val kotlin_version = "1.3.72"
+    val kotlin_version by extra("1.9.24")
+    //val kotlin_version = "1.3.72"
+    val compose_version by extra("1.5.14")
+    //kotlin_version = '1.9.0'
+
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
     dependencies {
-        classpath ("com.android.tools.build:gradle:4.0.0")
+        classpath ("com.android.tools.build:gradle:4.3.1")
         classpath ("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
-        classpath ("com.google.gms:google-services:4.2.0")
+        classpath ("com.google.gms:google-services:4.3.10")
+
+
+//        // Update to the latest Gradle version
+//        classpath 'com.android.tools.build:gradle:4.3.1'
+        // Update to the latest Kotlin version
+        classpath ("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

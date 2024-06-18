@@ -5,8 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myapp.R
+import com.example.socialapp.R
 import com.example.socialapp.daos.UserDao
 import com.example.socialapp.models.User
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -40,6 +41,10 @@ class SignInActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_sign_in)
+
+        // Ensure you're setting an AppCompat theme here
+        setTheme(R.style.Theme_SocialApp) // Adjust the theme as per your app's theme names
         setContentView(R.layout.activity_sign_in)
 
         // Configure Google Sign In
@@ -82,17 +87,32 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 
+//    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+//        try {
+//            val account =
+//                completedTask.getResult(ApiException::class.java)!!
+//            Log.d(TAG, "firebaseAuthWithGoogle:" + account.id)
+//            firebaseAuthWithGoogle(account.idToken!!)
+//        } catch (e: ApiException) {
+//            Log.w(TAG, "signInResult:failed code=" + e.statusCode)
+//
+//        }
+//    }
+
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
-            val account =
-                completedTask.getResult(ApiException::class.java)!!
+            val account = completedTask.getResult(ApiException::class.java)!!
             Log.d(TAG, "firebaseAuthWithGoogle:" + account.id)
             firebaseAuthWithGoogle(account.idToken!!)
         } catch (e: ApiException) {
             Log.w(TAG, "signInResult:failed code=" + e.statusCode)
-
+            Log.e(TAG, "signInResult: failed message=" + e.message)
+            // Add additional logging or error handling here
+            e.printStackTrace()
+            Toast.makeText(this, "Failed to sign in: ${e.message}", Toast.LENGTH_SHORT).show()
         }
     }
+
 
     private fun firebaseAuthWithGoogle(idToken: String) {
 
